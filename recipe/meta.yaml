@@ -5,18 +5,18 @@ package:
   version: {{ version }}
 
 source:
-  fn: ratelim-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/r/ratelim/ratelim-{{ version }}.tar.gz
-  md5: 91063fcac413e9faba01c9046c5134dc
+  sha256: 826d32177e11f9a12831901c9fda6679fd5bbea3605910820167088f5acbb11d
 
 build:
-  number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  number: 1
+  noarch: python
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
-  build:
+  host:
     - python
-    - setuptools
+    - pip
   run:
     - python
     - decorator
