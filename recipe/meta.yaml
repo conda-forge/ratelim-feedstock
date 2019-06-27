@@ -9,9 +9,9 @@ source:
   sha256: 826d32177e11f9a12831901c9fda6679fd5bbea3605910820167088f5acbb11d
 
 build:
-  number: 1
+  number: 2
   noarch: python
-  script: python -m pip install --no-deps --ignore-installed .
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
   host:
@@ -28,7 +28,8 @@ test:
 about:
   home: http://github.com/themiurgo/ratelim
   license: MIT
-  summary: 'Makes it easy to respect rate limits.'
+  license_file: LICENSE
+  summary: 'Makes it easy to respect rate limits'
 
 extra:
   recipe-maintainers:
