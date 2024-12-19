@@ -5,23 +5,26 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/r/ratelim/ratelim-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/r/ratelim/ratelim-{{ version }}.tar.gz
   sha256: 826d32177e11f9a12831901c9fda6679fd5bbea3605910820167088f5acbb11d
 
 build:
-  number: 2
+  number: 3
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python
+    - python {{ python_min }}
+    - setuptools
     - pip
   run:
-    - python
+    - python >={{ python_min }}
     - decorator
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - ratelim
 
